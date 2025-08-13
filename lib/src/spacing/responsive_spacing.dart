@@ -22,9 +22,10 @@ class ResponsiveSpacing {
   }
 
   /// Get responsive spacing for different sizes
-  static double getSpacingSize(Breakpoint breakpoint, SpacingSize size, {double scale = 1.0}) {
+  static double getSpacingSize(Breakpoint breakpoint, SpacingSize size,
+      {double scale = 1.0}) {
     final baseSpacing = getSpacing(breakpoint, scale: scale);
-    
+
     switch (size) {
       case SpacingSize.xs:
         return baseSpacing * 0.25;
@@ -42,11 +43,12 @@ class ResponsiveSpacing {
   }
 
   /// Scale spacing based on screen width
-  static double scaleSpacing(double baseSpacing, double screenWidth, {double minScale = 0.5, double maxScale = 2.0}) {
+  static double scaleSpacing(double baseSpacing, double screenWidth,
+      {double minScale = 0.5, double maxScale = 2.0}) {
     final breakpoint = ResponsiveBreakpoints.getBreakpoint(screenWidth);
     final scale = _getScaleFactor(breakpoint);
     final scaledSpacing = baseSpacing * scale;
-    
+
     return scaledSpacing.clamp(baseSpacing * minScale, baseSpacing * maxScale);
   }
 
@@ -79,7 +81,7 @@ class ResponsiveSpacing {
     double scale = 1.0,
   }) {
     final spacing = getSpacing(breakpoint, scale: scale);
-    
+
     return EdgeInsets.only(
       left: left ?? horizontal ?? all ?? spacing,
       top: top ?? vertical ?? all ?? spacing,
@@ -101,7 +103,7 @@ class ResponsiveSpacing {
     double scale = 1.0,
   }) {
     final spacing = getSpacingSize(breakpoint, size, scale: scale);
-    
+
     return EdgeInsets.only(
       left: left ?? horizontal ?? spacing,
       top: top ?? vertical ?? spacing,
@@ -118,7 +120,7 @@ class ResponsiveSpacing {
     double scale = 1.0,
   }) {
     final spacing = getSpacing(breakpoint, scale: scale);
-    
+
     return EdgeInsets.symmetric(
       horizontal: horizontal ?? spacing,
       vertical: vertical ?? spacing,
@@ -141,7 +143,7 @@ class ResponsiveSpacing {
     double scale = 1.0,
   }) {
     final spacing = getSpacing(breakpoint, scale: scale);
-    
+
     return EdgeInsets.only(
       left: left ?? spacing,
       top: top ?? spacing,
@@ -153,11 +155,11 @@ class ResponsiveSpacing {
 
 /// Spacing size enum
 enum SpacingSize {
-  xs,  // Extra small
-  sm,  // Small
-  md,  // Medium
-  lg,  // Large
-  xl,  // Extra large
+  xs, // Extra small
+  sm, // Small
+  md, // Medium
+  lg, // Large
+  xl, // Extra large
   xxl, // Extra extra large
 }
 
@@ -188,14 +190,22 @@ extension ResponsiveSpacingExtension on BuildContext {
   }
 
   /// Get responsive EdgeInsets.symmetric
-  EdgeInsets paddingSymmetric({double? horizontal, double? vertical, double scale = 1.0}) {
+  EdgeInsets paddingSymmetric(
+      {double? horizontal, double? vertical, double scale = 1.0}) {
     final breakpoint = ResponsiveBreakpoints.getBreakpoint(screenWidth);
-    return ResponsiveSpacing.getSymmetric(breakpoint, horizontal: horizontal, vertical: vertical, scale: scale);
+    return ResponsiveSpacing.getSymmetric(breakpoint,
+        horizontal: horizontal, vertical: vertical, scale: scale);
   }
 
   /// Get responsive EdgeInsets.only
-  EdgeInsets paddingOnly({double? left, double? top, double? right, double? bottom, double scale = 1.0}) {
+  EdgeInsets paddingOnly(
+      {double? left,
+      double? top,
+      double? right,
+      double? bottom,
+      double scale = 1.0}) {
     final breakpoint = ResponsiveBreakpoints.getBreakpoint(screenWidth);
-    return ResponsiveSpacing.getOnly(breakpoint, left: left, top: top, right: right, bottom: bottom, scale: scale);
+    return ResponsiveSpacing.getOnly(breakpoint,
+        left: left, top: top, right: right, bottom: bottom, scale: scale);
   }
-} 
+}

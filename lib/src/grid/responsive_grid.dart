@@ -51,9 +51,9 @@ class ResponsiveGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentBreakpoint = breakpoint ?? 
-        ResponsiveBreakpoints.getBreakpoint(context.screenWidth);
-    
+    final currentBreakpoint =
+        breakpoint ?? ResponsiveBreakpoints.getBreakpoint(context.screenWidth);
+
     final responsiveColumns = _getResponsiveColumns(currentBreakpoint);
     final responsiveSpacing = _getResponsiveSpacing(context, currentBreakpoint);
 
@@ -63,7 +63,8 @@ class ResponsiveGrid extends StatelessWidget {
         crossAxisCount: responsiveColumns,
         crossAxisSpacing: crossAxisSpacing ?? responsiveSpacing,
         mainAxisSpacing: mainAxisSpacing ?? runSpacing,
-        childAspectRatio: childAspectRatio ?? _getDefaultAspectRatio(currentBreakpoint),
+        childAspectRatio:
+            childAspectRatio ?? _getDefaultAspectRatio(currentBreakpoint),
         children: children,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -109,8 +110,6 @@ class ResponsiveGrid extends StatelessWidget {
   }
 }
 
-
-
 /// Extension for responsive grid utilities
 extension ResponsiveGridExtension on BuildContext {
   /// Get responsive number of columns based on current breakpoint
@@ -140,4 +139,4 @@ extension ResponsiveGridExtension on BuildContext {
         return totalColumns;
     }
   }
-} 
+}

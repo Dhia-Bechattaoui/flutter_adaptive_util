@@ -48,8 +48,9 @@ class ResponsiveText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final responsiveContext = context.responsiveContext;
-    final currentBreakpoint = breakpoint ?? 
-        (responsiveContext?.breakpoint ?? ResponsiveBreakpoints.getBreakpoint(context.screenWidth));
+    final currentBreakpoint = breakpoint ??
+        (responsiveContext?.breakpoint ??
+            ResponsiveBreakpoints.getBreakpoint(context.screenWidth));
 
     final responsiveStyle = _getResponsiveStyle(context, currentBreakpoint);
 
@@ -63,15 +64,17 @@ class ResponsiveText extends StatelessWidget {
   }
 
   TextStyle _getResponsiveStyle(BuildContext context, Breakpoint breakpoint) {
-    final baseStyle = style ?? Theme.of(context).textTheme.bodyMedium ?? const TextStyle();
+    final baseStyle =
+        style ?? Theme.of(context).textTheme.bodyMedium ?? const TextStyle();
     final baseFontSize = baseStyle.fontSize ?? 16.0;
-    
+
     final responsiveFontSize = ResponsiveTypography.scaleFontSize(
-      baseFontSize,
-      context.screenWidth,
-      minScale: minScale,
-      maxScale: maxScale,
-    ) * scale;
+          baseFontSize,
+          context.screenWidth,
+          minScale: minScale,
+          maxScale: maxScale,
+        ) *
+        scale;
 
     return baseStyle.copyWith(
       fontSize: responsiveFontSize,
@@ -120,8 +123,9 @@ class ResponsiveHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final responsiveContext = context.responsiveContext;
-    final currentBreakpoint = breakpoint ?? 
-        (responsiveContext?.breakpoint ?? ResponsiveBreakpoints.getBreakpoint(context.screenWidth));
+    final currentBreakpoint = breakpoint ??
+        (responsiveContext?.breakpoint ??
+            ResponsiveBreakpoints.getBreakpoint(context.screenWidth));
 
     final responsiveStyle = _getResponsiveStyle(context, currentBreakpoint);
 
@@ -135,8 +139,9 @@ class ResponsiveHeading extends StatelessWidget {
   }
 
   TextStyle _getResponsiveStyle(BuildContext context, Breakpoint breakpoint) {
-    final baseStyle = style ?? Theme.of(context).textTheme.bodyMedium ?? const TextStyle();
-    
+    final baseStyle =
+        style ?? Theme.of(context).textTheme.bodyMedium ?? const TextStyle();
+
     final responsiveStyle = ResponsiveTypography.getHeadingStyle(
       breakpoint,
       level,
@@ -201,4 +206,4 @@ extension ResponsiveTextExtension on String {
       breakpoint: breakpoint,
     );
   }
-} 
+}

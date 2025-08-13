@@ -22,9 +22,10 @@ class ResponsiveSizing {
   }
 
   /// Get responsive sizing for different sizes
-  static double getSizingSize(Breakpoint breakpoint, SizingSize size, {double scale = 1.0}) {
+  static double getSizingSize(Breakpoint breakpoint, SizingSize size,
+      {double scale = 1.0}) {
     final baseSizing = getSizing(breakpoint, scale: scale);
-    
+
     switch (size) {
       case SizingSize.xs:
         return baseSizing * 0.5;
@@ -42,11 +43,12 @@ class ResponsiveSizing {
   }
 
   /// Scale sizing based on screen width
-  static double scaleSizing(double baseSizing, double screenWidth, {double minScale = 0.5, double maxScale = 2.0}) {
+  static double scaleSizing(double baseSizing, double screenWidth,
+      {double minScale = 0.5, double maxScale = 2.0}) {
     final breakpoint = ResponsiveBreakpoints.getBreakpoint(screenWidth);
     final scale = _getScaleFactor(breakpoint);
     final scaledSizing = baseSizing * scale;
-    
+
     return scaledSizing.clamp(baseSizing * minScale, baseSizing * maxScale);
   }
 
@@ -67,57 +69,68 @@ class ResponsiveSizing {
   }
 
   /// Get responsive width based on screen width percentage
-  static double getResponsiveWidth(double screenWidth, double percentage, {double minWidth = 0, double maxWidth = double.infinity}) {
+  static double getResponsiveWidth(double screenWidth, double percentage,
+      {double minWidth = 0, double maxWidth = double.infinity}) {
     final width = screenWidth * (percentage / 100);
     return width.clamp(minWidth, maxWidth);
   }
 
   /// Get responsive height based on screen height percentage
-  static double getResponsiveHeight(double screenHeight, double percentage, {double minHeight = 0, double maxHeight = double.infinity}) {
+  static double getResponsiveHeight(double screenHeight, double percentage,
+      {double minHeight = 0, double maxHeight = double.infinity}) {
     final height = screenHeight * (percentage / 100);
     return height.clamp(minHeight, maxHeight);
   }
 
   /// Get responsive size (width and height) based on screen dimensions
-  static Size getResponsiveSize(Size screenSize, double widthPercentage, double heightPercentage, {
+  static Size getResponsiveSize(
+    Size screenSize,
+    double widthPercentage,
+    double heightPercentage, {
     double minWidth = 0,
     double maxWidth = double.infinity,
     double minHeight = 0,
     double maxHeight = double.infinity,
   }) {
-    final width = getResponsiveWidth(screenSize.width, widthPercentage, minWidth: minWidth, maxWidth: maxWidth);
-    final height = getResponsiveHeight(screenSize.height, heightPercentage, minHeight: minHeight, maxHeight: maxHeight);
-    
+    final width = getResponsiveWidth(screenSize.width, widthPercentage,
+        minWidth: minWidth, maxWidth: maxWidth);
+    final height = getResponsiveHeight(screenSize.height, heightPercentage,
+        minHeight: minHeight, maxHeight: maxHeight);
+
     return Size(width, height);
   }
 
   /// Get responsive aspect ratio size
-  static Size getAspectRatioSize(double screenWidth, double aspectRatio, {double maxWidth = double.infinity}) {
+  static Size getAspectRatioSize(double screenWidth, double aspectRatio,
+      {double maxWidth = double.infinity}) {
     final width = screenWidth.clamp(0.0, maxWidth);
     final height = width / aspectRatio;
-    
+
     return Size(width, height);
   }
 
   /// Get responsive square size
-  static double getSquareSize(double screenWidth, double percentage, {double minSize = 0, double maxSize = double.infinity}) {
+  static double getSquareSize(double screenWidth, double percentage,
+      {double minSize = 0, double maxSize = double.infinity}) {
     final size = screenWidth * (percentage / 100);
     return size.clamp(minSize, maxSize);
   }
 
   /// Get responsive circular size
-  static double getCircularSize(double screenWidth, double percentage, {double minSize = 0, double maxSize = double.infinity}) {
-    return getSquareSize(screenWidth, percentage, minSize: minSize, maxSize: maxSize);
+  static double getCircularSize(double screenWidth, double percentage,
+      {double minSize = 0, double maxSize = double.infinity}) {
+    return getSquareSize(screenWidth, percentage,
+        minSize: minSize, maxSize: maxSize);
   }
 }
 
 /// Sizing size enum
 enum SizingSize {
-  xs,  // Extra small
-  sm,  // Small
-  md,  // Medium
-  lg,  // Large
-  xl,  // Extra large
+  xs, // Extra small
+  sm, // Small
+  md, // Medium
+  lg, // Large
+  xl, // Extra large
   xxl, // Extra extra large
 }
 
@@ -142,17 +155,23 @@ extension ResponsiveSizingExtension on BuildContext {
   }
 
   /// Get responsive width based on percentage
-  double responsiveWidth(double percentage, {double minWidth = 0, double maxWidth = double.infinity}) {
-    return ResponsiveSizing.getResponsiveWidth(screenWidth, percentage, minWidth: minWidth, maxWidth: maxWidth);
+  double responsiveWidth(double percentage,
+      {double minWidth = 0, double maxWidth = double.infinity}) {
+    return ResponsiveSizing.getResponsiveWidth(screenWidth, percentage,
+        minWidth: minWidth, maxWidth: maxWidth);
   }
 
   /// Get responsive height based on percentage
-  double responsiveHeight(double percentage, {double minHeight = 0, double maxHeight = double.infinity}) {
-    return ResponsiveSizing.getResponsiveHeight(screenHeight, percentage, minHeight: minHeight, maxHeight: maxHeight);
+  double responsiveHeight(double percentage,
+      {double minHeight = 0, double maxHeight = double.infinity}) {
+    return ResponsiveSizing.getResponsiveHeight(screenHeight, percentage,
+        minHeight: minHeight, maxHeight: maxHeight);
   }
 
   /// Get responsive size based on percentages
-  Size responsiveSize(double widthPercentage, double heightPercentage, {
+  Size responsiveSize(
+    double widthPercentage,
+    double heightPercentage, {
     double minWidth = 0,
     double maxWidth = double.infinity,
     double minHeight = 0,
@@ -170,12 +189,16 @@ extension ResponsiveSizingExtension on BuildContext {
   }
 
   /// Get responsive square size
-  double responsiveSquare(double percentage, {double minSize = 0, double maxSize = double.infinity}) {
-    return ResponsiveSizing.getSquareSize(screenWidth, percentage, minSize: minSize, maxSize: maxSize);
+  double responsiveSquare(double percentage,
+      {double minSize = 0, double maxSize = double.infinity}) {
+    return ResponsiveSizing.getSquareSize(screenWidth, percentage,
+        minSize: minSize, maxSize: maxSize);
   }
 
   /// Get responsive circular size
-  double responsiveCircular(double percentage, {double minSize = 0, double maxSize = double.infinity}) {
-    return ResponsiveSizing.getCircularSize(screenWidth, percentage, minSize: minSize, maxSize: maxSize);
+  double responsiveCircular(double percentage,
+      {double minSize = 0, double maxSize = double.infinity}) {
+    return ResponsiveSizing.getCircularSize(screenWidth, percentage,
+        minSize: minSize, maxSize: maxSize);
   }
-} 
+}

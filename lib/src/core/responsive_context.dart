@@ -4,6 +4,10 @@ import 'responsive_config.dart';
 
 /// Provides responsive context information throughout the widget tree
 class ResponsiveContext {
+  /// Creates a responsive context with the given screen information.
+  ///
+  /// The [size], [breakpoint], [config], and [orientation] parameters are required
+  /// to provide complete responsive context information.
   const ResponsiveContext({
     required this.size,
     required this.breakpoint,
@@ -60,19 +64,24 @@ class ResponsiveContext {
     T? desktop,
     T? largeDesktop,
     T? extraLarge,
-    T? fallback,
+    required T fallback,
   }) {
     switch (breakpoint) {
       case Breakpoint.mobile:
-        return mobile ?? fallback!;
+        return mobile ?? fallback;
       case Breakpoint.tablet:
-        return tablet ?? mobile ?? fallback!;
+        return tablet ?? mobile ?? fallback;
       case Breakpoint.desktop:
-        return desktop ?? tablet ?? mobile ?? fallback!;
+        return desktop ?? tablet ?? mobile ?? fallback;
       case Breakpoint.largeDesktop:
-        return largeDesktop ?? desktop ?? tablet ?? mobile ?? fallback!;
+        return largeDesktop ?? desktop ?? tablet ?? mobile ?? fallback;
       case Breakpoint.extraLarge:
-        return extraLarge ?? largeDesktop ?? desktop ?? tablet ?? mobile ?? fallback!;
+        return extraLarge ??
+            largeDesktop ??
+            desktop ??
+            tablet ??
+            mobile ??
+            fallback;
     }
   }
 
@@ -114,6 +123,10 @@ extension ResponsiveContextExtension on BuildContext {
 
 /// Provider widget for ResponsiveContext
 class ResponsiveContextProvider extends InheritedWidget {
+  /// Creates a responsive context provider widget.
+  ///
+  /// The [context] parameter provides the responsive context information,
+  /// and [child] is the widget tree that will have access to this context.
   const ResponsiveContextProvider({
     super.key,
     required this.context,
@@ -123,11 +136,13 @@ class ResponsiveContextProvider extends InheritedWidget {
   final ResponsiveContext context;
 
   static ResponsiveContext? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ResponsiveContextProvider>()?.context;
+    return context
+        .dependOnInheritedWidgetOfExactType<ResponsiveContextProvider>()
+        ?.context;
   }
 
   @override
   bool updateShouldNotify(ResponsiveContextProvider oldWidget) {
     return context != oldWidget.context;
   }
-} 
+}

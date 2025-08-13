@@ -17,7 +17,7 @@ class ResponsiveMedia {
     required T fallback,
   }) {
     final breakpoint = ResponsiveBreakpoints.getBreakpoint(screenWidth);
-    
+
     switch (breakpoint) {
       case Breakpoint.mobile:
         return mobile ?? fallback;
@@ -28,7 +28,12 @@ class ResponsiveMedia {
       case Breakpoint.largeDesktop:
         return largeDesktop ?? desktop ?? tablet ?? mobile ?? fallback;
       case Breakpoint.extraLarge:
-        return extraLarge ?? largeDesktop ?? desktop ?? tablet ?? mobile ?? fallback;
+        return extraLarge ??
+            largeDesktop ??
+            desktop ??
+            tablet ??
+            mobile ??
+            fallback;
     }
   }
 
@@ -96,12 +101,14 @@ class ResponsiveMedia {
   }
 
   /// Check if screen width is within a range
-  static bool isWidthInRange(double screenWidth, double minWidth, double maxWidth) {
+  static bool isWidthInRange(
+      double screenWidth, double minWidth, double maxWidth) {
     return screenWidth >= minWidth && screenWidth <= maxWidth;
   }
 
   /// Check if screen height is within a range
-  static bool isHeightInRange(double screenHeight, double minHeight, double maxHeight) {
+  static bool isHeightInRange(
+      double screenHeight, double minHeight, double maxHeight) {
     return screenHeight >= minHeight && screenHeight <= maxHeight;
   }
 
@@ -143,7 +150,7 @@ class ResponsiveMedia {
   }) {
     final breakpoint = ResponsiveBreakpoints.getBreakpoint(screenWidth);
     final basePadding = _getBasePadding(breakpoint);
-    
+
     return EdgeInsets.only(
       left: left ?? horizontal ?? all ?? basePadding,
       top: top ?? vertical ?? all ?? basePadding,
@@ -307,4 +314,4 @@ extension ResponsiveMediaExtension on BuildContext {
       bottom: bottom,
     );
   }
-} 
+}

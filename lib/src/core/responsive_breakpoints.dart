@@ -1,5 +1,3 @@
-
-
 /// Defines breakpoints for different screen sizes
 class ResponsiveBreakpoints {
   const ResponsiveBreakpoints._();
@@ -35,7 +33,8 @@ class ResponsiveBreakpoints {
   static bool isDesktop(double width) => width >= tablet && width < desktop;
 
   /// Check if the current width is large desktop
-  static bool isLargeDesktop(double width) => width >= desktop && width < largeDesktop;
+  static bool isLargeDesktop(double width) =>
+      width >= desktop && width < largeDesktop;
 
   /// Check if the current width is extra large
   static bool isExtraLarge(double width) => width >= largeDesktop;
@@ -52,6 +51,9 @@ enum Breakpoint {
 
 /// Extension to get readable names for breakpoints
 extension BreakpointExtension on Breakpoint {
+  /// Returns a human-readable name for the breakpoint.
+  ///
+  /// Examples: 'Mobile', 'Tablet', 'Desktop', 'Large Desktop', 'Extra Large'
   String get name {
     switch (this) {
       case Breakpoint.mobile:
@@ -82,4 +84,4 @@ extension BreakpointExtension on Breakpoint {
         return ResponsiveBreakpoints.largeDesktop;
     }
   }
-} 
+}

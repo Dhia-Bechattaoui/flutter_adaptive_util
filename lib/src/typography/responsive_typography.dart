@@ -65,7 +65,8 @@ class ResponsiveTypography {
   }
 
   /// Get responsive heading font size
-  static double getHeadingSize(Breakpoint breakpoint, int level, {double scale = 1.0}) {
+  static double getHeadingSize(Breakpoint breakpoint, int level,
+      {double scale = 1.0}) {
     final headingSizes = _defaultHeadingSizes[breakpoint];
     final baseSize = headingSizes?[level] ?? 16.0;
     return baseSize * scale;
@@ -81,7 +82,7 @@ class ResponsiveTypography {
     double scale = 1.0,
   }) {
     final size = fontSize ?? getFontSize(breakpoint, scale: scale);
-    
+
     return TextStyle(
       fontSize: size,
       fontWeight: fontWeight,
@@ -100,7 +101,7 @@ class ResponsiveTypography {
     double scale = 1.0,
   }) {
     final size = getHeadingSize(breakpoint, level, scale: scale);
-    
+
     return TextStyle(
       fontSize: size,
       fontWeight: fontWeight ?? FontWeight.bold,
@@ -110,11 +111,12 @@ class ResponsiveTypography {
   }
 
   /// Scale font size based on screen width
-  static double scaleFontSize(double baseSize, double screenWidth, {double minScale = 0.8, double maxScale = 1.5}) {
+  static double scaleFontSize(double baseSize, double screenWidth,
+      {double minScale = 0.8, double maxScale = 1.5}) {
     final breakpoint = ResponsiveBreakpoints.getBreakpoint(screenWidth);
     final scale = _getScaleFactor(breakpoint);
     final scaledSize = baseSize * scale;
-    
+
     return scaledSize.clamp(baseSize * minScale, baseSize * maxScale);
   }
 
@@ -151,4 +153,4 @@ class ResponsiveTypography {
       labelSmall: getTextStyle(breakpoint, scale: scale * 0.7),
     );
   }
-} 
+}

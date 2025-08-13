@@ -66,12 +66,15 @@ class ResponsiveGridItem extends StatelessWidget {
       child: child,
     );
   }
-
-
 }
 
 /// A responsive grid item with automatic responsive behavior
 class AutoResponsiveGridItem extends StatelessWidget {
+  /// Creates an auto-responsive grid item.
+  ///
+  /// The [child] widget is required. The [minSpan] and [maxSpan] parameters
+  /// control the column span range. The [padding], [margin], [decoration], and
+  /// [alignment] parameters are optional.
   const AutoResponsiveGridItem({
     super.key,
     required this.child,
@@ -191,4 +194,4 @@ extension ResponsiveGridItemExtension on Widget {
       child: this,
     );
   }
-} 
+}

@@ -136,10 +136,9 @@ class OrientationHelper {
     required Orientation orientation,
   }) {
     // For landscape orientation, use height as the primary dimension
-    final primaryDimension = orientation == Orientation.landscape 
-        ? screenHeight 
-        : screenWidth;
-    
+    final primaryDimension =
+        orientation == Orientation.landscape ? screenHeight : screenWidth;
+
     return ResponsiveBreakpoints.getBreakpoint(primaryDimension);
   }
 
@@ -156,7 +155,7 @@ class OrientationHelper {
       landscape: landscapeMultiplier ?? 0.75,
       fallback: 1.0,
     );
-    
+
     return (baseColumns * multiplier).round().clamp(1, baseColumns);
   }
 }
@@ -286,4 +285,4 @@ extension OrientationHelperExtension on BuildContext {
       landscapeMultiplier: landscapeMultiplier,
     );
   }
-} 
+}

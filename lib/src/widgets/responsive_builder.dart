@@ -5,6 +5,11 @@ import '../core/responsive_config.dart';
 
 /// A simple responsive builder widget
 class ResponsiveBuilder extends StatelessWidget {
+  /// Creates a responsive builder widget.
+  ///
+  /// The [builder] function is required and will be called with the current
+  /// breakpoint and screen size. The [config] parameter is optional and defaults
+  /// to a default ResponsiveConfig.
   const ResponsiveBuilder({
     super.key,
     required this.builder,
@@ -12,7 +17,8 @@ class ResponsiveBuilder extends StatelessWidget {
   });
 
   /// Builder function that receives breakpoint and screen size
-  final Widget Function(BuildContext context, Breakpoint breakpoint, Size size) builder;
+  final Widget Function(BuildContext context, Breakpoint breakpoint, Size size)
+      builder;
 
   /// Responsive configuration
   final ResponsiveConfig config;
@@ -22,13 +28,18 @@ class ResponsiveBuilder extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     final size = mediaQuery.size;
     final breakpoint = config.getBreakpoint(size.width);
-    
+
     return builder(context, breakpoint, size);
   }
 }
 
 /// A responsive builder that provides responsive context
 class ResponsiveContextBuilder extends StatelessWidget {
+  /// Creates a responsive context builder widget.
+  ///
+  /// The [builder] function is required and will be called with the current
+  /// responsive context. The [config] parameter is optional and defaults
+  /// to a default ResponsiveConfig.
   const ResponsiveContextBuilder({
     super.key,
     required this.builder,
@@ -36,7 +47,8 @@ class ResponsiveContextBuilder extends StatelessWidget {
   });
 
   /// Builder function that receives responsive context
-  final Widget Function(BuildContext context, ResponsiveContext responsiveContext) builder;
+  final Widget Function(
+      BuildContext context, ResponsiveContext responsiveContext) builder;
 
   /// Responsive configuration
   final ResponsiveConfig config;
@@ -47,7 +59,7 @@ class ResponsiveContextBuilder extends StatelessWidget {
     final size = mediaQuery.size;
     final orientation = mediaQuery.orientation;
     final breakpoint = config.getBreakpoint(size.width);
-    
+
     final responsiveContext = ResponsiveContext(
       size: size,
       breakpoint: breakpoint,
@@ -61,6 +73,11 @@ class ResponsiveContextBuilder extends StatelessWidget {
 
 /// A responsive builder for conditional rendering based on breakpoint
 class ResponsiveConditionalBuilder extends StatelessWidget {
+  /// Creates a responsive conditional builder widget.
+  ///
+  /// The [condition] function determines whether to show the [builder] content
+  /// or the [fallback] widget. The [config] parameter is optional and defaults
+  /// to a default ResponsiveConfig.
   const ResponsiveConditionalBuilder({
     super.key,
     required this.condition,
@@ -73,7 +90,8 @@ class ResponsiveConditionalBuilder extends StatelessWidget {
   final bool Function(Breakpoint breakpoint, Size size) condition;
 
   /// Builder function that receives breakpoint and screen size
-  final Widget Function(BuildContext context, Breakpoint breakpoint, Size size) builder;
+  final Widget Function(BuildContext context, Breakpoint breakpoint, Size size)
+      builder;
 
   /// Fallback widget if condition is false
   final Widget? fallback;
@@ -86,17 +104,23 @@ class ResponsiveConditionalBuilder extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     final size = mediaQuery.size;
     final breakpoint = config.getBreakpoint(size.width);
-    
+
     if (condition(breakpoint, size)) {
       return builder(context, breakpoint, size);
     }
-    
+
     return fallback ?? const SizedBox.shrink();
   }
 }
 
 /// A responsive builder for different content based on breakpoint
 class ResponsiveContentBuilder extends StatelessWidget {
+  /// Creates a responsive content builder widget.
+  ///
+  /// The [mobile], [tablet], [desktop], [largeDesktop], and [extraLarge] parameters
+  /// are optional content builders for specific breakpoints. The [fallback] parameter
+  /// provides a default content if no breakpoint-specific content is provided.
+  /// The [config] parameter is optional and defaults to a default ResponsiveConfig.
   const ResponsiveContentBuilder({
     super.key,
     this.mobile,
@@ -134,9 +158,9 @@ class ResponsiveContentBuilder extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     final size = mediaQuery.size;
     final breakpoint = config.getBreakpoint(size.width);
-    
+
     Widget Function(BuildContext context, Size size)? content;
-    
+
     switch (breakpoint) {
       case Breakpoint.mobile:
         content = mobile;
@@ -154,13 +178,13 @@ class ResponsiveContentBuilder extends StatelessWidget {
         content = extraLarge ?? largeDesktop ?? desktop ?? tablet ?? mobile;
         break;
     }
-    
+
     content ??= fallback;
-    
+
     if (content != null) {
       return content(context, size);
     }
-    
+
     return const SizedBox.shrink();
   }
-} 
+}

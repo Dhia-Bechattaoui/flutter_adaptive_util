@@ -2,6 +2,17 @@ import 'responsive_breakpoints.dart';
 
 /// Configuration class for responsive design settings
 class ResponsiveConfig {
+  /// Creates a responsive configuration with customizable breakpoints and settings.
+  ///
+  /// All parameters are optional and have sensible defaults:
+  /// - [mobileBreakpoint]: Defaults to 600px
+  /// - [tabletBreakpoint]: Defaults to 900px
+  /// - [desktopBreakpoint]: Defaults to 1200px
+  /// - [largeDesktopBreakpoint]: Defaults to 1600px
+  /// - [typographyScale]: Defaults to 1.0 (no scaling)
+  /// - [spacingScale]: Defaults to 1.0 (no scaling)
+  /// - [enableOrientationHandling]: Defaults to true
+  /// - [defaultGridColumns]: Defaults to 12
   const ResponsiveConfig({
     this.mobileBreakpoint = ResponsiveBreakpoints.mobile,
     this.tabletBreakpoint = ResponsiveBreakpoints.tablet,
@@ -52,10 +63,12 @@ class ResponsiveConfig {
       mobileBreakpoint: mobileBreakpoint ?? this.mobileBreakpoint,
       tabletBreakpoint: tabletBreakpoint ?? this.tabletBreakpoint,
       desktopBreakpoint: desktopBreakpoint ?? this.desktopBreakpoint,
-      largeDesktopBreakpoint: largeDesktopBreakpoint ?? this.largeDesktopBreakpoint,
+      largeDesktopBreakpoint:
+          largeDesktopBreakpoint ?? this.largeDesktopBreakpoint,
       typographyScale: typographyScale ?? this.typographyScale,
       spacingScale: spacingScale ?? this.spacingScale,
-      enableOrientationHandling: enableOrientationHandling ?? this.enableOrientationHandling,
+      enableOrientationHandling:
+          enableOrientationHandling ?? this.enableOrientationHandling,
       defaultGridColumns: defaultGridColumns ?? this.defaultGridColumns,
     );
   }
@@ -73,14 +86,17 @@ class ResponsiveConfig {
   bool isMobile(double width) => width < mobileBreakpoint;
 
   /// Check if width is tablet using custom breakpoint
-  bool isTablet(double width) => width >= mobileBreakpoint && width < tabletBreakpoint;
+  bool isTablet(double width) =>
+      width >= mobileBreakpoint && width < tabletBreakpoint;
 
   /// Check if width is desktop using custom breakpoint
-  bool isDesktop(double width) => width >= tabletBreakpoint && width < desktopBreakpoint;
+  bool isDesktop(double width) =>
+      width >= tabletBreakpoint && width < desktopBreakpoint;
 
   /// Check if width is large desktop using custom breakpoint
-  bool isLargeDesktop(double width) => width >= desktopBreakpoint && width < largeDesktopBreakpoint;
+  bool isLargeDesktop(double width) =>
+      width >= desktopBreakpoint && width < largeDesktopBreakpoint;
 
   /// Check if width is extra large using custom breakpoint
   bool isExtraLarge(double width) => width >= largeDesktopBreakpoint;
-} 
+}

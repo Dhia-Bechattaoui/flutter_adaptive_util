@@ -11,7 +11,8 @@ class ResponsiveWidget extends StatelessWidget {
   });
 
   /// Builder function that receives responsive context
-  final Widget Function(BuildContext context, ResponsiveContext responsiveContext) builder;
+  final Widget Function(
+      BuildContext context, ResponsiveContext responsiveContext) builder;
 
   /// Responsive configuration
   final ResponsiveConfig config;
@@ -22,7 +23,7 @@ class ResponsiveWidget extends StatelessWidget {
     final size = mediaQuery.size;
     final orientation = mediaQuery.orientation;
     final breakpoint = config.getBreakpoint(size.width);
-    
+
     final responsiveContext = ResponsiveContext(
       size: size,
       breakpoint: breakpoint,
@@ -36,8 +37,6 @@ class ResponsiveWidget extends StatelessWidget {
     );
   }
 }
-
-
 
 /// A responsive widget that shows different content based on breakpoint
 class ResponsiveLayout extends StatelessWidget {
@@ -86,7 +85,7 @@ class ResponsiveLayout extends StatelessWidget {
           extraLarge: extraLarge,
           fallback: fallback,
         );
-        
+
         return widget ?? const SizedBox.shrink();
       },
     );
@@ -121,13 +120,13 @@ class ResponsiveOrientationLayout extends StatelessWidget {
       config: config,
       builder: (context, responsiveContext) {
         Widget? widget;
-        
+
         if (responsiveContext.isPortrait) {
           widget = portrait;
         } else if (responsiveContext.isLandscape) {
           widget = landscape;
         }
-        
+
         return widget ?? fallback ?? const SizedBox.shrink();
       },
     );
@@ -174,7 +173,7 @@ class ResponsiveSizeLayout extends StatelessWidget {
       config: config,
       builder: (context, responsiveContext) {
         Widget? widget;
-        
+
         if (responsiveContext.width < smallBreakpoint) {
           widget = small;
         } else if (responsiveContext.width < mediumBreakpoint) {
@@ -182,9 +181,9 @@ class ResponsiveSizeLayout extends StatelessWidget {
         } else {
           widget = large;
         }
-        
+
         return widget ?? fallback ?? const SizedBox.shrink();
       },
     );
   }
-} 
+}

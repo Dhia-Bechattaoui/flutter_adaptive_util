@@ -37,7 +37,8 @@ class ResponsiveDemoPage extends StatelessWidget {
               children: [
                 _buildHeader(context, responsiveContext.breakpoint),
                 SizedBox(height: context.spacing * 2),
-                _buildBreakpointInfo(context, responsiveContext.breakpoint, responsiveContext),
+                _buildBreakpointInfo(
+                    context, responsiveContext.breakpoint, responsiveContext),
                 SizedBox(height: context.spacing * 2),
                 _buildResponsiveGrid(context),
                 SizedBox(height: context.spacing * 2),
@@ -80,7 +81,8 @@ class ResponsiveDemoPage extends StatelessWidget {
             style: TextStyle(color: Colors.white70),
           ),
           SizedBox(height: context.spacing),
-          'Screen Size: ${context.screenWidth.round()} x ${context.screenHeight.round()}'.responsiveText(
+          'Screen Size: ${context.screenWidth.round()} x ${context.screenHeight.round()}'
+              .responsiveText(
             style: TextStyle(color: Colors.white70),
           ),
         ],
@@ -88,7 +90,8 @@ class ResponsiveDemoPage extends StatelessWidget {
     );
   }
 
-  Widget _buildBreakpointInfo(BuildContext context, Breakpoint breakpoint, ResponsiveContext responsiveContext) {
+  Widget _buildBreakpointInfo(BuildContext context, Breakpoint breakpoint,
+      ResponsiveContext responsiveContext) {
     return Card(
       child: Padding(
         padding: context.paddingAll,
@@ -97,18 +100,30 @@ class ResponsiveDemoPage extends StatelessWidget {
           children: [
             'Breakpoint Information'.responsiveHeading(level: 2),
             SizedBox(height: context.spacing),
-            _buildBreakpointRow(context, 'Mobile', responsiveContext.isMobile, breakpoint == Breakpoint.mobile),
-            _buildBreakpointRow(context, 'Tablet', responsiveContext.isTablet, breakpoint == Breakpoint.tablet),
-            _buildBreakpointRow(context, 'Desktop', responsiveContext.isDesktop, breakpoint == Breakpoint.desktop),
-            _buildBreakpointRow(context, 'Large Desktop', responsiveContext.isLargeDesktop, breakpoint == Breakpoint.largeDesktop),
-            _buildBreakpointRow(context, 'Extra Large', responsiveContext.isExtraLarge, breakpoint == Breakpoint.extraLarge),
+            _buildBreakpointRow(context, 'Mobile', responsiveContext.isMobile,
+                breakpoint == Breakpoint.mobile),
+            _buildBreakpointRow(context, 'Tablet', responsiveContext.isTablet,
+                breakpoint == Breakpoint.tablet),
+            _buildBreakpointRow(context, 'Desktop', responsiveContext.isDesktop,
+                breakpoint == Breakpoint.desktop),
+            _buildBreakpointRow(
+                context,
+                'Large Desktop',
+                responsiveContext.isLargeDesktop,
+                breakpoint == Breakpoint.largeDesktop),
+            _buildBreakpointRow(
+                context,
+                'Extra Large',
+                responsiveContext.isExtraLarge,
+                breakpoint == Breakpoint.extraLarge),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildBreakpointRow(BuildContext context, String name, bool isActive, bool isCurrent) {
+  Widget _buildBreakpointRow(
+      BuildContext context, String name, bool isActive, bool isCurrent) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: context.spacing * 0.5),
       child: Row(
@@ -117,14 +132,19 @@ class ResponsiveDemoPage extends StatelessWidget {
             width: 12,
             height: 12,
             decoration: BoxDecoration(
-              color: isCurrent ? Colors.green : (isActive ? Colors.orange : Colors.grey),
+              color: isCurrent
+                  ? Colors.green
+                  : (isActive ? Colors.orange : Colors.grey),
               shape: BoxShape.circle,
             ),
           ),
           SizedBox(width: context.spacing),
           name.responsiveText(),
           Spacer(),
-          if (isCurrent) 'Current'.responsiveText(style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+          if (isCurrent)
+            'Current'.responsiveText(
+                style: TextStyle(
+                    color: Colors.green, fontWeight: FontWeight.bold)),
         ],
       ),
     );
@@ -183,7 +203,8 @@ class ResponsiveDemoPage extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            title.responsiveHeading(level: 3, style: TextStyle(color: Colors.white)),
+            title.responsiveHeading(
+                level: 3, style: TextStyle(color: Colors.white)),
             SizedBox(height: 8.0),
             'This grid item adapts to different screen sizes.'.responsiveText(
               style: TextStyle(color: Colors.white70),
@@ -209,7 +230,8 @@ class ResponsiveDemoPage extends StatelessWidget {
             SizedBox(height: context.spacing * 0.5),
             'This is a responsive heading level 3'.responsiveHeading(level: 3),
             SizedBox(height: context.spacing * 0.5),
-            'This is responsive body text that scales with screen size.'.responsiveText(),
+            'This is responsive body text that scales with screen size.'
+                .responsiveText(),
             SizedBox(height: context.spacing * 0.5),
             'This is smaller responsive text.'.responsiveText(scale: 0.8),
             SizedBox(height: context.spacing * 0.5),
@@ -237,7 +259,8 @@ class ResponsiveDemoPage extends StatelessWidget {
                 border: Border.all(color: Colors.blue),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: 'This container uses responsive padding and margin'.responsiveText(),
+              child: 'This container uses responsive padding and margin'
+                  .responsiveText(),
             ),
             SizedBox(height: context.spacing),
             Row(
@@ -302,13 +325,17 @@ class ResponsiveDemoPage extends StatelessWidget {
                 fallback: EdgeInsets.all(16.0),
               ),
               decoration: BoxDecoration(
-                color: context.isPortrait ? Colors.purple.withValues(alpha: .1) : Colors.orange.withValues(alpha: .1),
+                color: context.isPortrait
+                    ? Colors.purple.withValues(alpha: .1)
+                    : Colors.orange.withValues(alpha: .1),
                 border: Border.all(
                   color: context.isPortrait ? Colors.purple : Colors.orange,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: 'Orientation: ${context.isPortrait ? "Portrait" : "Landscape"}'.responsiveText(),
+              child:
+                  'Orientation: ${context.isPortrait ? "Portrait" : "Landscape"}'
+                      .responsiveText(),
             ),
           ],
         ),
@@ -376,4 +403,4 @@ class ResponsiveDemoPage extends StatelessWidget {
       ),
     );
   }
-} 
+}

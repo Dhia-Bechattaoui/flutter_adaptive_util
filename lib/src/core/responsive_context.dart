@@ -72,7 +72,12 @@ class ResponsiveContext {
       case Breakpoint.largeDesktop:
         return largeDesktop ?? desktop ?? tablet ?? mobile ?? fallback!;
       case Breakpoint.extraLarge:
-        return extraLarge ?? largeDesktop ?? desktop ?? tablet ?? mobile ?? fallback!;
+        return extraLarge ??
+            largeDesktop ??
+            desktop ??
+            tablet ??
+            mobile ??
+            fallback!;
     }
   }
 
@@ -123,11 +128,13 @@ class ResponsiveContextProvider extends InheritedWidget {
   final ResponsiveContext context;
 
   static ResponsiveContext? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ResponsiveContextProvider>()?.context;
+    return context
+        .dependOnInheritedWidgetOfExactType<ResponsiveContextProvider>()
+        ?.context;
   }
 
   @override
   bool updateShouldNotify(ResponsiveContextProvider oldWidget) {
     return context != oldWidget.context;
   }
-} 
+}

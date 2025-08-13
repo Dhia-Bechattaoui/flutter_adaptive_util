@@ -20,8 +20,10 @@ void main() {
     });
 
     test('should return correct breakpoint for large desktop', () {
-      expect(ResponsiveBreakpoints.getBreakpoint(1200), Breakpoint.largeDesktop);
-      expect(ResponsiveBreakpoints.getBreakpoint(1599), Breakpoint.largeDesktop);
+      expect(
+          ResponsiveBreakpoints.getBreakpoint(1200), Breakpoint.largeDesktop);
+      expect(
+          ResponsiveBreakpoints.getBreakpoint(1599), Breakpoint.largeDesktop);
     });
 
     test('should return correct breakpoint for extra large', () {
@@ -130,8 +132,10 @@ void main() {
     });
 
     test('should get spacing size', () {
-      final xsSpacing = ResponsiveSpacing.getSpacingSize(Breakpoint.mobile, SpacingSize.xs);
-      final lgSpacing = ResponsiveSpacing.getSpacingSize(Breakpoint.mobile, SpacingSize.lg);
+      final xsSpacing =
+          ResponsiveSpacing.getSpacingSize(Breakpoint.mobile, SpacingSize.xs);
+      final lgSpacing =
+          ResponsiveSpacing.getSpacingSize(Breakpoint.mobile, SpacingSize.lg);
 
       expect(xsSpacing, 2.0); // 8.0 * 0.25
       expect(lgSpacing, 12.0); // 8.0 * 1.5
@@ -264,7 +268,8 @@ void main() {
       expect(find.textContaining('Breakpoint:'), findsOneWidget);
     });
 
-    testWidgets('ResponsiveLayout should render fallback widget', (WidgetTester tester) async {
+    testWidgets('ResponsiveLayout should render fallback widget',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: ResponsiveLayout(
@@ -294,4 +299,4 @@ void main() {
       expect(find.text('Item 2'), findsOneWidget);
     });
   });
-} 
+}
